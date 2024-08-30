@@ -44,3 +44,10 @@ To queue a tweet, send a POST request to the `/tweet` endpoint with the followin
 - Body: JSON object with a `text` field containing the tweet content
 
 Example using curl:
+
+```bash
+curl -X POST http://localhost:6900/tweet \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer your_api_key" \
+-d '{"text": "Hello, world! This is a test tweet from tweet-server."}'
+````
