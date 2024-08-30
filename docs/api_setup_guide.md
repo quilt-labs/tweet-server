@@ -8,21 +8,21 @@ This guide will walk you through the process of obtaining the necessary API acce
 
    a. Create a Twitter account if you don't already have one.
       
-      <img src="./images/sign-up.png" alt="Create Twitter Account" style="width: 100%; max-width: 100px; height: auto;">
+      <img src="./images/sign-up.png" alt="Create Twitter Account" width="300">
 
    b. Sign up for free API access at [Twitter Developer Portal](https://developer.twitter.com/en/portal/petition/essential/basic-info).
       
-      <img src="./images/sign-up-2.png" alt="Sign Up for API Access" style="width: 100%; max-width: 300px; height: auto;">
+      <img src="./images/sign-up-2.png" alt="Sign Up for API Access" width="300">
 
    c. Fill out the developer agreement and submit your application.
       
-      <img src="./images/sign-up-3.png" alt="Developer Agreement" style="width: 100%; max-width: 300px; height: auto;">
+      <img src="./images/sign-up-3.png" alt="Developer Agreement" width="300">
 
    Note: The Twitter Developer account application process may take some time for approval. Be prepared to wait for a response from Twitter before you can proceed with the next steps.
 
 2. Once your developer account is approved, go to the Twitter Developer Portal (https://developer.twitter.com/en/portal/dashboard) and sign in with your Twitter account.
 
-   <img src="./images/dev_dashboard.png" alt="Developer Dashboard" style="width: 100%; max-width: 300px; height: auto;">
+   <img src="./images/dev_dashboard.png" alt="Developer Dashboard" width="300">
 
 3. Create a new project and app in the developer portal if a default one doesn't exist. In most cases it will already exist.
 
@@ -43,7 +43,7 @@ This guide will walk you through the process of obtaining the necessary API acce
 
     7. You may get a popup asking you to save client ID and client secret. This is optional.
 
-    <img src="./images/user_auth_settings.png" alt="Settings configuration" style="width: 100%; max-width: 300px; height: auto;">
+    <img src="./images/user_auth_settings.png" alt="Settings configuration" width="300">
 
 
 5. Now we will obtain the following keys:
@@ -59,8 +59,7 @@ This guide will walk you through the process of obtaining the necessary API acce
     3. Generate your access token and access token secret, write it down 
 
 
-   <img src="./images/keys_n_tokens-3.png" alt="API Credentials" style="width: 100%; max-width: 300px; height: auto;">
-
+   <img src="./images/keys_n_tokens-3.png" alt="API Credentials" width="300">
 
 ## Creating the Security Keys
 
