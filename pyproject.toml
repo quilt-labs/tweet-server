@@ -4,9 +4,18 @@ version = "0.1.0"
 description = "Tweet server"
 authors = ["Mukund Sudarshan <mukund@quiltlabs.ai>"]
 readme = "README.md"
+packages = [{include = "tweet_server", from = "src"}]
+
+[tool.poetry.scripts]
+tweet-server = "tweet_server.__main__:main"
 
 [tool.poetry.dependencies]
 python = "^3.12"
+uvicorn = "^0.30.6"
+fastapi = "^0.112.2"
+redis = "^5.0.8"
+rq = "^1.16.2"
+tweepy = "^4.14.0"
 
 
 [build-system]
