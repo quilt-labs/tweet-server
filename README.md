@@ -10,7 +10,7 @@ Before building the Docker image, you need to set up the `security_keys` folder 
 
 1. Create a folder named `security_keys` in the root directory of the project.
 2. Inside the `security_keys` folder, create two files:
-   a. `x.json`: This file should contain your Twitter API credentials in JSON format:
+   1. `x.json`: This file should contain your Twitter API credentials in JSON format:
    ```json
    {
      "api_key": "your_api_key",
@@ -19,7 +19,7 @@ Before building the Docker image, you need to set up the `security_keys` folder 
      "access_secret": "your_access_secret"
    }
    ```
-   b. `api_key.txt`: This file should contain a single line with your chosen API key for authenticating requests to the tweet-server.
+   2. `api_key.txt`: This file should contain a single line with your chosen API key for authenticating requests to the tweet-server.
 
 ### 2. Building and Running the Docker Image
 
