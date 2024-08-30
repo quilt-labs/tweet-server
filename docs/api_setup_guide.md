@@ -8,7 +8,7 @@ This guide will walk you through the process of obtaining the necessary API acce
 
    a. Create a Twitter account if you don't already have one.
       
-      <img src="./images/sign-up.png" alt="Create Twitter Account" style="width: 100%; max-width: 300px; height: auto;">
+      <img src="./images/sign-up.png" alt="Create Twitter Account" style="width: 100%; max-width: 100px; height: auto;">
 
    b. Sign up for free API access at [Twitter Developer Portal](https://developer.twitter.com/en/portal/petition/essential/basic-info).
       
