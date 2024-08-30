@@ -8,18 +8,13 @@ A server for queuing and sending tweets using FastAPI, Redis, and Tweepy.
 
 Before building the Docker image, you need to set up the `security_keys` folder with the necessary credentials:
 
-1. Create a folder named `security_keys` in the root directory of the project.
-2. Inside the `security_keys` folder, create two files:
-   1. `x.json`: This file should contain your Twitter API credentials in JSON format:
-   ```json
-   {
-     "api_key": "your_api_key",
-     "api_secret": "your_api_secret",
-     "access_token": "your_access_token",
-     "access_secret": "your_access_secret"
-   }
-   ```
-   2. `api_key.txt`: This file should contain a single line with your chosen API key for authenticating requests to the tweet-server.
+1. Follow the detailed instructions in the [API Setup Guide](docs/api_setup_guide.md) to obtain your Twitter API credentials and create the required files.
+
+2. Make sure you have created the `security_keys` folder in the root directory of the project with the following files:
+   - `x.json`: Contains your Twitter API credentials
+   - `api_key.txt`: Contains your chosen API key for authenticating requests to the tweet-server
+
+For security reasons, never commit the `security_keys` folder to version control.
 
 ### 2. Building and Running the Docker Image
 
@@ -50,4 +45,4 @@ curl -X POST http://localhost:6900/tweet \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer your_api_key" \
 -d '{"text": "Hello, world! This is a test tweet from tweet-server."}'
-````
+```
