@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "tweet-server"
+version = "0.1.0"
+description = "Tweet server"
+authors = ["Mukund Sudarshan <mukund@quiltlabs.ai>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
