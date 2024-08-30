@@ -4,19 +4,63 @@ This guide will walk you through the process of obtaining the necessary API acce
 
 ## Twitter API Setup
 
-1. Go to the Twitter Developer Portal (https://developer.twitter.com/en/portal/dashboard) and sign in with your Twitter account.
+1. Sign up for a Twitter Developer account:
 
-2. Create a new project and app in the developer portal.
+   a. Create a Twitter account if you don't already have one.
+      
+      <img src="./images/sign-up.png" alt="Create Twitter Account" style="width: 100%; max-width: 300px; height: auto;">
 
-3. In your app settings, navigate to the "Keys and Tokens" tab.
+   b. Sign up for free API access at [Twitter Developer Portal](https://developer.twitter.com/en/portal/petition/essential/basic-info).
+      
+      <img src="./images/sign-up-2.png" alt="Sign Up for API Access" style="width: 100%; max-width: 300px; height: auto;">
 
-4. You will need the following credentials:
+   c. Fill out the developer agreement and submit your application.
+      
+      <img src="./images/sign-up-3.png" alt="Developer Agreement" style="width: 100%; max-width: 300px; height: auto;">
+
+   Note: The Twitter Developer account application process may take some time for approval. Be prepared to wait for a response from Twitter before you can proceed with the next steps.
+
+2. Once your developer account is approved, go to the Twitter Developer Portal (https://developer.twitter.com/en/portal/dashboard) and sign in with your Twitter account.
+
+   <img src="./images/dev_dashboard.png" alt="Developer Dashboard" style="width: 100%; max-width: 300px; height: auto;">
+
+3. Create a new project and app in the developer portal if a default one doesn't exist. In most cases it will already exist.
+
+
+4. Once your project is created, hit the gear icon to take you to the settings page.
+
+    1. edit the User authentication settings
+
+    2. Set app permission to read and write or read and write and direct message. This is important, your tweetbot will not work without this
+
+    3. Set the type of app to be `Web App, Automated App or Bot`
+
+    4. Set the callback URL to be `http://localhost:PORT/oauth/callback` where `PORT` is some local port. I used  `6900` for this project.
+
+    5. Enter your website, and fill out any of the optional fields
+
+    6. Hit save/enter
+
+    7. You may get a popup asking you to save client ID and client secret. This is optional.
+
+    <img src="./images/user_auth_settings.png" alt="Settings configuration" style="width: 100%; max-width: 300px; height: auto;">
+
+
+5. Now we will obtain the following keys:
    - API Key (Consumer Key)
    - API Key Secret (Consumer Secret)
    - Access Token
    - Access Token Secret
 
-5. Make sure your app has the necessary permissions to read and write tweets.
+    1. Hit the `Keys and tokens` tab
+
+    2. Generate your consumer key and the consumer key secret, write it down 
+
+    3. Generate your access token and access token secret, write it down 
+
+
+   <img src="./images/keys_n_tokens-3.png" alt="API Credentials" style="width: 100%; max-width: 300px; height: auto;">
+
 
 ## Creating the Security Keys
 
