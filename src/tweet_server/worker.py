@@ -22,11 +22,58 @@ class TweepyClient:
             access_token_secret=self.access_token_secret,
         )
 
-    def send_tweet(self, text):
+        self.client_v1 = self.get_twitter_conn_v1(
+            api_key=self.consumer_key,
+            api_secret=self.consumer_secret,
+            access_token=self.access_token,
+            access_token_secret=self.access_token_secret,
+        )
+
+    def get_twitter_conn_v1(
+        self, api_key, api_secret, access_token, access_token_secret
+    ) -> tweepy.API:
+        """Get twitter conn 1.1"""
+
+        auth = tweepy.OAuth1UserHandler(
+            consumer_key=api_key, consumer_secret=api_secret
+        )
+        auth.set_access_token(
+            key=access_token,
+            secret=access_token_secret,
+        )
+        return tweepy.API(auth)
+
+    def send_tweet(
+        self,
+        text,
+        image_path: str | None = None,
+        in_reply_to_tweet_id: str | None = None,
+    ):
         if len(text) > 278:
             raise ValueError(f"text `{text}` is too long ({len(text)} chars)")
 
-        response = self.client_v2.create_tweet(text=text)
+        if image_path is None:
+            if in_reply_to_tweet_id is None:
+                response = self.client_v2.create_tweet(text=text)
+            else:
+                response = self.client_v2.create_tweet(
+                    text=text, in_reply_to_tweet_id=in_reply_to_tweet_id
+                )
+            return response
+
+        # upload media
+        ## make sure image_path is .png or .jpg
+        if not (image_path.endswith("png") or image_path.endswith("jpg")):
+            raise ValueError("image must be a png or jpg")
+
+        media = self.client_v1.media_upload(filename=image_path)
+        if media is None:
+            raise ValueError("media upload failed")
+        media_id = media.media_id
+
+        response = self.client_v2.create_tweet(
+            text=text, media_ids=[media_id], in_reply_to_tweet_id=in_reply_to_tweet_id
+        )
         return response
 
 
@@ -35,8 +82,17 @@ def send_tweet(tweet_data):
     tweepy_client = TweepyClient(container_key_path)
 
     text = tweet_data["text"]
+    image_path = tweet_data.get("image_path")
+    in_reply_to_tweet_id = tweet_data.get("in_reply_to_tweet_id")
+
     try:
-        response = tweepy_client.send_tweet(text=text)
+        response = tweepy_client.send_tweet(
+            text=text, image_path=image_path, in_reply_to_tweet_id=in_reply_to_tweet_id
+        )
+
+        if image_path:
+            os.unlink(image_path)
+
         return {"status": "completed", "response": str(response)}
     except Exception as e:
         return {"status": "failed", "error": str(e)}

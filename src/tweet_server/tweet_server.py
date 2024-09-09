@@ -1,6 +1,7 @@
 import uvicorn
 import argparse
-from fastapi import FastAPI, HTTPException, Depends
+import tempfile
+from fastapi import FastAPI, HTTPException, Depends, UploadFile, File
 from fastapi.security import HTTPBearer
 from contextlib import asynccontextmanager
 import os
@@ -50,9 +51,11 @@ async def verify_token(credentials: HTTPAuthorizationCredentials = Depends(secur
     return token
 
 
-def enqueue_tweet(text: str):
+def enqueue_tweet(text: str, image_path: str | None, in_reply_to_tweet_id: str | None):
     tweet_data = {
         "text": text,
+        "image_path": image_path,
+        "in_reply_to_tweet_id": in_reply_to_tweet_id,
     }
 
     if tweet_queue is None:
@@ -65,9 +68,29 @@ def enqueue_tweet(text: str):
 @app.post("/tweet")
 async def queue_tweet(
     text: str,
+    in_reply_to_tweet_id: str | None = None,
     token: str = Depends(verify_token),
 ):
-    job_id = enqueue_tweet(text=text)
+    job_id = enqueue_tweet(
+        text=text, image_path=None, in_reply_to_tweet_id=in_reply_to_tweet_id
+    )
+    return {"status": "queued", "job_id": job_id}
+
+
+@app.post("/tweet_with_image")
+async def queue_tweet_with_image(
+    text: str,
+    in_reply_to_tweet_id: str | None = None,
+    image: UploadFile = File(...),
+    token: str = Depends(verify_token),
+):
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".png") as temp_image:
+        temp_image.write(await image.read())
+        temp_image_path = temp_image.name
+
+    job_id = enqueue_tweet(
+        text=text, image_path=temp_image_path, in_reply_to_tweet_id=in_reply_to_tweet_id
+    )
     return {"status": "queued", "job_id": job_id}
 
 
